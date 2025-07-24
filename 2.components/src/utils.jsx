@@ -23,6 +23,8 @@ export default Calculator;
 		You can export multiple values from a file.
 		You must import using curly braces {}.
 		You must use the exact exported name unless you use as to rename.
+    // import { add as plus } from './utils';
+       console.log(plus(5, 3)); // 8
 */
 
 // DEFOULT EXPORT
