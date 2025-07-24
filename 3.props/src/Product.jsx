@@ -16,3 +16,5 @@ export default Product;
 
 // This is a reusable Product component.
 // It receives props: productName (string) and productPrice (number).
+
+// Props are how you pass data from one component to another in React.
