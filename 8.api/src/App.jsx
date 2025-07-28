@@ -9,10 +9,10 @@ function App() {
     console.log(response.data);
   };
 
-  const getUserById = async (id) => {
-    const response = await axios.get(`http://localhost:3000/posts/${id}`);
-    console.log(response.data);
-  };
+  // const getUserById = async (id) => {
+  //   const response = await axios.get(`http://localhost:3000/posts/${id}`);
+  //   console.log(response.data);
+  // };
 
   // POST // adding data to the database
 
@@ -36,24 +36,49 @@ function App() {
     console.log(response.data);
   };
 
+  const getUserById = async (userId) => {
+    const response = await axios.get(`http://localhost:3000/posts/${userId}`);
+    return response.data.postId;
+  };
+
+  const getPostById = async (postId) => {
+    const response = await axios.get(
+      `https://jsonplaceholder.typicode.com/posts/${postId}`
+    );
+    return response.data;
+  };
+
+  const getPost = async () => {
+    const postId = await getUserById("1");
+    const postData = await getPostById(postId);
+    console.log(postData);
+  };
+
   useEffect(() => {
+    /* // GET
     getUsers();
     getUserById(2);
-
+*/
+    /* // POST
     const newUser = {
       // id is automatically assigned by the API
       author: "typicode",
       title: "json-server",
     };
     createUser(newUser);
-
+*/
+    /* // PUT
     const updatedUser = {
       author: "aaa",
       title: "aaa",
     };
     updateUser("2", updatedUser);
-
+*/
+    /* // DELETE
     deleteUserById("1");
+*/
+
+    getPost();
   }, []);
 
   return <></>;
