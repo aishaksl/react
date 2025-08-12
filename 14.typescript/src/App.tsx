@@ -72,6 +72,60 @@ function App() {
   mixed.push(999);
   // mixed.push(true);  // Error: boolean not allowed
 
+  // OBJECT
+
+  let person: { name: string; age: number };
+
+  person = {
+    name: "Alice",
+    age: 30
+  };
+
+  // person.age = "30"; // Error: age must be a number
+  /*   person = {
+    name: "Alice",}
+  */ // Error: Property 'age' is missing in type
+
+  // Optional Properties(?:)
+
+  let car: { brand: string; year?: number };
+
+  car = { brand: "Toyota" };
+  car = { brand: "Honda", year: 2020 };
+  // car = { year: 2020 }; //  Error: brand is required
+
+  // Using Type 
+
+  type User = {
+    name: string;
+    age: number;
+    isAdmin?: boolean;  // optional
+  };
+
+  const user1: User = {
+    name: "Bob",
+    age: 25,
+  };
+
+  const user2: User = {
+    name: "Carol",
+    age: 30,
+    isAdmin: true,
+  };
+
+  // Using Interface
+  interface Users {
+    name: string;
+    age: number;
+    isAdmin?: boolean;
+  }
+
+  const user3: Users = {
+    name: "David",
+    age: 40,
+  };
+
+
   return (
     <>
       <h2>Primitive Types in TypeScript</h2>
@@ -109,6 +163,12 @@ function App() {
         <li>{fruits}</li>
         <li>{numbers2}</li>
         <li>{mixed}</li>
+      </ul>
+
+      <h2>Objects</h2>
+      <ul>
+        <li>{person.name}</li>
+        <li>{car.brand}</li>
 
       </ul>
     </>
