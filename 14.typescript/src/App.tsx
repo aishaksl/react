@@ -51,7 +51,7 @@ function App() {
   direction = "right";
   // direction = "forward"; // Error
 
-  // Arrays
+  // ARRAYS
 
   const numbers: number[] = [1, 2, 3];
   numbers.push(4);
@@ -125,6 +125,29 @@ function App() {
     age: 40,
   };
 
+  // FUNCTION
+
+  // Basic Function
+
+  function greet(name: string): string {
+    return `Hello, ${name}`
+  }
+
+  // Arrow Function
+  const greetArrow = (name: string): string => {
+    return `Hello, ${name}`
+  }
+
+  // Function Without Return Value (void)
+
+  const write = (arr: string[]): void => {
+    arr.forEach((value: string) => {
+      return console.log(value)
+    })
+  }
+
+  write(["apple", "banana", "orange"]);
+
 
   return (
     <>
@@ -169,8 +192,14 @@ function App() {
       <ul>
         <li>{person.name}</li>
         <li>{car.brand}</li>
-
       </ul>
+
+      <h2>Function</h2>
+      <ul>
+        <li>{greet("John")}</li>
+        <li>{greetArrow("John")}</li>
+
+      </ul >
     </>
   );
 }
