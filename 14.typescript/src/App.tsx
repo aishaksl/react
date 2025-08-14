@@ -148,6 +148,117 @@ function App() {
 
   write(["apple", "banana", "orange"]);
 
+  // GENERIC TYPE
+
+  /*
+      Define functions, classes, or types without fixing the type upfront.
+      Specify the type when you use it.
+      Keep your code flexible and type-safe at the same time.
+  */
+
+  function writes<T>(arr: T[]): void {
+    console.log(arr)
+  }
+
+  writes([1, 2, 3])
+  writes(["a", "b", "c"])
+  writes([true, false])
+
+  interface GenericType<T> {
+    name: string,
+    age: number,
+    salary: T[]
+  }
+
+  const obj1: GenericType<string> = {
+    name: "John",
+    age: 24,
+    salary: ["5000", "10000"]
+  }
+
+  const obj2: GenericType<number> = {
+    name: "Alice",
+    age: 30,
+    salary: [3000, 8000]
+  }
+
+  const arr: GenericType<string | number>[] = [obj1, obj2]
+
+  function writing<T>(arr: GenericType<T>[]): void {
+    arr.forEach((value: GenericType<T>) => console.log(value))
+  }
+
+  writing(arr)
+
+  // EXTENDS
+
+  interface Person {
+    name: string
+    age: number
+  }
+
+  interface Employee extends Person {
+    jobTitle: string
+  }
+
+  const worker: Employee = {
+    name: "Ayşe",
+    age: 28,
+    jobTitle: "Nurse"
+  }
+
+  // Partial, Required, Readonly, Pick, Omit
+
+  // Partial -> Makes all properties optional
+
+  interface MyUser {
+    name: string
+    age: number
+    isAdmin?: boolean // optional property
+  }
+
+  // 1. Partial - all properties become optional
+  const partialUser: Partial<MyUser> = {
+    name: "Alice"
+    // age and isAdmin are optional here
+  }
+
+  // 2. Required - all properties must be present, even optional ones
+  const requiredUser: Required<MyUser> = {
+    name: "Bob",
+    age: 30,
+    isAdmin: true // now required because of Required<>
+  }
+
+  // 3. Readonly - cannot change values after creation
+  const readonlyUser: Readonly<MyUser> = {
+    name: "Charlie",
+    age: 22,
+    isAdmin: false
+  }
+  // readonlyUser.age = 23 // Error: read-only property
+
+  // 4. Pick - only certain properties allowed
+  const pickedUser: Pick<MyUser, "name" | "age"> = {
+    name: "Diana",
+    age: 28
+    // isAdmin not allowed here
+  }
+
+  // 5. Omit - remove certain properties
+  const omittedUser: Omit<MyUser, "isAdmin"> = {
+    name: "Eve",
+    age: 40
+    // isAdmin removed from the type
+  }
+
+  console.log("Partial:", partialUser)
+  console.log("Required:", requiredUser)
+  console.log("Readonly:", readonlyUser)
+  console.log("Pick:", pickedUser)
+  console.log("Omit:", omittedUser)
+
+
 
   return (
     <>
@@ -198,8 +309,14 @@ function App() {
       <ul>
         <li>{greet("John")}</li>
         <li>{greetArrow("John")}</li>
-
       </ul >
+
+      <h2>Extends</h2>
+      <ul>
+        <li>{worker.name}</li>
+        <li>{worker.age}</li>
+        <li>{worker.jobTitle}</li>
+      </ul>
     </>
   );
 }
