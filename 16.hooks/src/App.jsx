@@ -1,4 +1,5 @@
 import "./App.css";
+import useCopyToClipboard from "./hooks/useCopyToClipboard";
 import useCounter from "./hooks/useCounter";
 import useToggle from "./hooks/useToggle";
 
@@ -6,6 +7,8 @@ function App() {
   const { count, increase, decrease } = useCounter();
 
   const { open, change } = useToggle();
+
+  const { copied, copy } = useCopyToClipboard();
 
   return (
     <div className="space-y-8">
@@ -24,6 +27,12 @@ function App() {
           </div>
         )}
         <button onClick={change}>{open ? " Hide" : "Show"}</button>
+      </div>
+
+      <div>
+        <button onClick={() => copy("Just work")}>
+          {copied ? "Copied" : "Copy"}
+        </button>
       </div>
     </div>
   );
